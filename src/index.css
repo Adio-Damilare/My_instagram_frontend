@@ -1,0 +1,125 @@
+ *{
+  font-family: "poppin",sans-serif;
+  box-sizing: border-box;
+ }
+ body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+#email::placeholder{
+  font-size: 12px;
+
+}
+#email,.short{
+  font-size: 13px;
+  /* padding-top: 10px; */
+  height: 42px !important;
+
+}
+.short{
+  width: 83%;
+}
+.form-floating{
+  /* border: 1px solid; */
+}
+#spanHide{
+  cursor: pointer;
+  width: 16%;
+}
+#orSpan{
+  position: absolute;
+  margin-top: -1.7rem;
+  font-size: 13px;
+  padding: 0 5px;
+  background-color: white;
+}
+.form-control:hover{
+  outline: none !important;
+ 
+}
+#mackBook:hover{
+text-decoration: underline;
+}
+#mackBook{
+cursor: default;
+}
+#navSticky{
+  position: sticky;
+  top:0;
+  z-index: 200000;
+}
+
+
+
+@media (max-width:767px) and (min-width:636px) {
+  #navbarD{
+    display: none;
+  }
+  #increase1{
+  
+    width: 40%;
+  }
+  #increaseW{
+    width: 60%;
+  }
+  #suggestpage{
+    width: 100%;
+  }
+  
+}
+@media (max-width:635px) and (min-width:454px) {
+  #navbarD{
+    display: none;
+  }
+  #increase1{
+  
+    width: 50%;
+  }
+  #increase2{
+  
+    width: 50%;
+  }
+  
+}
+@media (max-width:453px) and (min-width:342px) {
+  #navbarD{
+    display: none;
+  }
+  #increase1{
+  
+    width: 40%;
+  }
+  #increase2{
+  
+    width: 60%;
+  }
+  
+}
+@media (max-width:341px) and (min-width:0px) {
+  #navbarD{
+    display: none;
+  }
+  #increase1{ 
+    width: 30%;
+  }
+  
+  #increase1 img{
+  
+    width: 100%;
+  }
+
+  #increase2{
+  
+    width: 70%;
+  }
+  
+}
