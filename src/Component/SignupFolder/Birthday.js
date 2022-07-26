@@ -10,7 +10,6 @@ function Birthday(props) {
     useEffect(()=>{
         helpMeDisable()
     },)
-    // console.log((formik.values.Birthday.Year));
     const [disabledBtn, setdisabledBtn] = useState(true)
     const [disabledBtn1, setdisabledBtn1] = useState(true)
     const helpMeDisable=()=>{
@@ -46,7 +45,7 @@ return (
 
 
             <div className='row pt'>
-                <div className='col-lg-4 col-md-7 col-sm-10 mx-auto pt-4 mt-2 ' >
+                <div className='col-lg-4 col-md-7 col-sm-10 mx-auto pt-4 mt-2 ' id='spaceMuch' >
                     <div className='pt-3 card px-5'>
 
                         <div className='text-center mb-4 '> <img src={birthday} alt="istagram90" /></div>
@@ -141,7 +140,7 @@ return (
                                 <option style={{ fontSize: "12px" }}>30</option>
                                 <option style={{ fontSize: "12px" }}>31</option>
                             </select>
-                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 0 " }} name="Birthday.Year" onMouseEnter={smart} onChange={formik.handleChange} className="border  rounded ms-3 ">
+                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 0 " }} name="Birthday.Year" onFocus={smart} onChange={formik.handleChange} className="border  rounded ms-3 ">
                                 <option style={{ fontSize: "12px" }}>2022</option>
                                 <option style={{ fontSize: "12px" }}>2021</option>
                                 <option style={{ fontSize: "12px" }}>2019</option>

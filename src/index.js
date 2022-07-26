@@ -6,7 +6,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+import "../node_modules/bootstrap/dist/js/bootstrap.js"
+import "../node_modules/bootstrap/js/dist/modal.js"
+import "../node_modules/bootstrap/js/src/dropdown.js"
+// import "../node_modules/bootstrap/js/src/"
+import "../node_modules/bootstrap/js/src/util/scrollbar"
 import "../node_modules/bootstrap/dist/js/bootstrap.esm"
+// import "../node_modules/bootstrap/dist/js/"
 import {BrowserRouter} from "react-router-dom"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

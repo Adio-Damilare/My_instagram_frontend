@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import istagramPhoto1 from "../Images/istagramPhoto1.png"
 import facebookLogo from "../Images/facebook2.png"
 import { useFormik } from "formik"
+import { useNavigate } from 'react-router-dom'
 import * as yup from "yup"
 import axios from 'axios'
 import SecondFooter from '../SecondFooter'
 import Footer from '../Footer'
 function SignIn() {
+  const [LocaKey, setLocaKey] = useState("")
+  useEffect(() => {
+      if(LocaKey){
+          localStorage.deviceId= JSON.stringify(LocaKey)
+      }
+  }, [LocaKey])
+  const Navigate= useNavigate()
   const URI="http://localhost:4000/user/signin"
   const [hide, sethide] = useState("")
   const [typePassword, settypePassword] = useState("password")
@@ -19,7 +27,8 @@ function SignIn() {
       console.log(values)
       axios.post(URI,values).then((res)=>{
         if(res.status==200){
-          console.log(res)
+         setLocaKey(res.data.id)
+         Navigate("/home")
         }
       }).then((error)=>{
         if(error){

@@ -1,8 +1,11 @@
  *{
   font-family: "poppin",sans-serif;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
  }
  body {
+  /* background-color:  red; */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,6 +14,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  margin-left: 24px;
+  font-size: 20px;
+  width: 232px;
+  height: auto;
+  cursor: pointer;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -29,7 +44,7 @@ code {
   width: 83%;
 }
 .form-floating{
-  /* border: 1px solid; */
+ 
 }
 #spanHide{
   cursor: pointer;
@@ -57,8 +72,338 @@ cursor: default;
   top:0;
   z-index: 200000;
 }
+#isloadingSuges{
+  width: 100%;
+ 
+  min-height: 690px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+#dropdown{
+  width: 230px;
+  border-radius: 10px; 
+  padding: 10px 0;
+  border-radius: 2px;
+  right:200px;
+}
+#describNav{
+  position:absolute;
+  z-index:2000; 
+  left:500px; 
+  width:340px;
+  top: 60px;
+  height:400px
+}
+#workDestroyer{
+  display: none;
+}
+#stubornImage{
+height:150px;
+width:150px;
+
+}
+#form-file-upload {
+  height: 16rem;
+  width: 28rem;
+  max-width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+#input-file-upload {
+  display: none;
+}
+
+#label-file-upload {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 2px;
+  border-radius: 1rem;
+  border-style: dashed;
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+#label-file-upload.drag-active {
+  background-color: #ffffff;
+}
+
+.upload-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  background-color: transparent;
+}
+
+.upload-button:hover {
+  
+  text-decoration-line: underline;
+}
 
 
+#drag-file-element {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+@media (max-width:384) and (min-width:px) {
+  #spaceMuch{
+    border: 1px solid;
+ 
+width: 100%;
+
+  }
+  
+}
+@media (max-width:1292px) and (min-width:1200px) {
+  #intikole{
+  left: 675px;
+  }
+  
+}
+@media (max-width:482px) and (min-width:374px) {
+  #stubornImage{
+  height: 100px;
+  width: 100px;
+  }
+  
+  
+}
+@media (max-width:373px) and (min-width:346px) {
+  #stubornImage{
+  height: 80px;
+  width: 80px;
+  }
+  
+}
+@media (max-width:345px) and (min-width:3px) {
+  #stubornImage{
+  height: 60px;
+  width: 60px;
+ 
+
+  }
+  
+  
+}
+@media (max-width:764px) and (min-width:9px) {
+  #fullScreen333{
+ 
+  width: 100%;
+
+  }
+  
+}
+@media (max-width:1201px) and (min-width:1180px) {
+  #intikole{
+ 
+  left: 660px;
+
+  }
+  
+}
+@media (max-width:1179px) and (min-width:1116px) {
+  #intikole{
+ 
+  left: 630px;
+
+  }
+  
+}
+@media (max-width:1115px) and (min-width:1088px) {
+  #intikole{
+ 
+  left: 610px;
+
+  }
+  
+}
+@media (max-width:1087px) and (min-width:1056px) {
+  #intikole{
+ 
+  left: 600px;
+
+  }
+  
+}
+@media (max-width:1055px) and (min-width:1000px) {
+  #intikole{
+ 
+  left: 580px;
+
+  }
+  
+}
+@media (max-width:999px) and (min-width:100px) {
+  #intikole{
+ 
+    display: none;
+  left: 580px;
+
+  }
+  
+}
+@media (max-width:1240px) and (min-width:1080px) {
+  #describNav{
+   left: 390px;
+   width: 300px;
+  
+
+  }
+  
+}
+@media (max-width:1081px) and (min-width:992px) {
+  #describNav{
+   left: 330px;
+   width: 300px;
+  
+
+  }
+  
+}
+@media (max-width:993px) and (min-width:896px) {
+  #describNav{
+   left: 240px;
+   width: 300px;
+  
+
+  }
+  
+}
+@media (max-width:895px) and (min-width:796px) {
+  #describNav{
+   left: 220px;
+   width: 260px;
+  
+
+  }
+  
+}
+@media (max-width:795px) and (min-width:7px) {
+  #describNav{
+   left: 210px;
+   width: 260px;
+  
+
+  }
+  
+}
+@media (max-width:843px) and (min-width:659px) {
+ #picCol{
+  width: 30%;
+
+ }
+ #labelCol{
+  width: 66%;
+  padding-left: 20px;
+ }
+}
+@media (max-width:658px) and (min-width:583px) {
+ #picCol{
+  width: 25%;
+
+ }
+ #labelCol{
+  width: 75%;
+  padding-left: 20px;
+ }
+}
+@media (max-width:582px) and (min-width:389px) {
+ #picCol{
+  width: 30%;
+ 
+ 
+ }
+ #LabelColEditButton{
+  position: absolute;
+  top: 150px;
+  left: 170px;
+  width: 140px;
+ }
+ #labelCol{
+  width: 70%;
+  padding-left: 20px;
+ } 
+ #labelCol #descendantOfLabel {
+  font-size:1px ;
+ 
+ }
+ #Ouwadamilare222{
+  top: 20px;
+  position: relative;
+  left: -140px;
+ }
+
+
+ #postFollow{
+  position:relative;
+  top: 100px;
+  display: flex;
+  right: 50px;
+  justify-content: space-evenly;
+  width: 100%;
+ }
+}
+@media (max-width:388px) and (min-width:9px) {
+ #picCol{
+  width: 30%;
+  position: relative;
+  left: -20px;
+ 
+ }
+ #LabelColEditButton{
+  position: absolute;
+  top: 150px;
+  left: 170px;
+  width: 140px;
+ }
+ #labelCol{
+  width: 70%;
+  padding-left: 20px;
+ } 
+ #labelCol #descendantOfLabel p{
+  font-size:1px ;
+ 
+ }
+ #Ouwadamilare222{
+  top: px;
+  position: relative;
+  left: -140px;
+ }
+
+
+ #postFollow{
+  position:relative;
+  top: 100px;
+  display: flex;
+  right: 50px;
+  justify-content: space-evenly;
+  width: 100%;
+ }
+}
+@media (max-width:410px) and (min-width:6px) {
+  #postFollow{
+    position:relative;
+    top: 100px;
+    display: flex;
+    right: 90px;
+    justify-content: space-between;
+    width: 300px;
+   }
+}
 
 @media (max-width:767px) and (min-width:636px) {
   #navbarD{
@@ -66,7 +411,7 @@ cursor: default;
   }
   #increase1{
   
-    width: 40%;
+    width: 50%;
   }
   #increaseW{
     width: 60%;
@@ -74,9 +419,18 @@ cursor: default;
   #suggestpage{
     width: 100%;
   }
-  
+  #dropdown{
+    border-radius: 1px ;
+    right: 30px;
+    width: 9.em;
+  }
 }
 @media (max-width:635px) and (min-width:454px) {
+  #dropdown{
+    right: 30px;
+    width: 9.em;
+    border-radius: 1px;
+  }
   #navbarD{
     display: none;
   }
@@ -91,6 +445,11 @@ cursor: default;
   
 }
 @media (max-width:453px) and (min-width:342px) {
+  #dropdown{
+    border: none;
+    right: 30px;
+    width: 9.em;
+  }
   #navbarD{
     display: none;
   }
@@ -120,6 +479,11 @@ cursor: default;
   #increase2{
   
     width: 70%;
+  }
+  #dropdown{
+    border: none;
+    right: 10px;
+    width: 9.em;
   }
   
 }

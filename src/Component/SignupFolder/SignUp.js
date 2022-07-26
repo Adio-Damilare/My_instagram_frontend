@@ -1,4 +1,4 @@
-import React, { useState, } from 'react'
+import React, { useState,useEffect } from 'react'
 import istagramPhoto1 from "../Images/istagramPhoto1.png"
 import facebookLogo from "../Images/facebookLogo.png"
 import Footer from '../Footer'
@@ -8,8 +8,16 @@ import axios from 'axios'
 import SecondFooter from '../SecondFooter'
 import Birthday from './Birthday'
 import ConfirmOfPassword from './ConfirmOfPassword'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
+    const [LocaKey, setLocaKey] = useState("")
+    useEffect(() => {
+        if(LocaKey){
+            localStorage.deviceId= JSON.stringify(LocaKey)
+        }
+    }, [LocaKey])
+    
     const [result, setresult] = useState("")
     const [mode, setMode] = useState(false)
     const [lode, setlode] = useState("")
@@ -26,23 +34,20 @@ const SignUp = () => {
             Username: "",
             Email: "",
             Password: "",
-            Birthday:{Year:"",Month:"January",Day:"1"}
+            ProfilePic:"newUser",
+            Birthday:{Year:"",Month:"January",Day:"1"},
         },
         onSubmit: (values) => {
         
             axios.post(URI, values).then((res) => {
                     if(res.status==200){
                         setresult(res.data.message)
-                        console.log(res.data)
+                     console.log(res.data)
+                     setLocaKey(res.data.id)
                         setMode(res.data.status)
                         setlode(res.data.status)
-                        console.log(res.data.status)
-                    }
-                    else{
-                        setMode("res.data.status")
-                        setresult("res.data")
-                    }
 
+                    }
                 return
             }).then((error) => {
                 if (error) {
@@ -61,8 +66,6 @@ const SignUp = () => {
             Password: yup.string().required("Password is required").min(6, "your password must be atleast six character"),
         })
     })
-
-
     const passwordLength = () => {
         sethide("Show")
 
@@ -72,7 +75,6 @@ const SignUp = () => {
             return
         }
         else {
-
             if (typePassword === "password" && hide === "Show") {
                 settypePassword("text");
                 sethide("Hide")
@@ -88,9 +90,6 @@ const SignUp = () => {
 
         }
         else if(formik.values.Fullname==="" || formik.values.Email==="" ||formik.values.Username===""|| formik.values.Password==="" ){
-           
-
-
         }
         else{
 
@@ -116,8 +115,8 @@ const link= "/signin"
             <div className='container mb-5'  >
                 <div className='container '  >
                    
-                        <div className='row pt-5' style={display?{display:"block"}:{display:"none"} }>
-                            <div className='col-lg-4 col-md-7 col-sm-10 mx-auto'  >
+                        <div className='row-lg pt-5' id='spaceMuch' style={display?{display:"block"}:{display:"none"} }>
+                            <div className='col-lg-4 col-md-7 col-sm-10 mx-auto' id='spaceMuch' >
                                 <div className='px-5  border border-1'>
                                     <div className='py-4 '>
                                         <div className='text-center '> <img src={istagramPhoto1} alt="istagram" /></div>
@@ -190,7 +189,7 @@ const link= "/signin"
                                                             placeholder='Password' />
                                                         <label style={{ fontSize: "13px", fontWeight: "200px", }}>Password</label>
                                                     </div>
-                                                    <span style={{ fontSize: "12px", marginLeft: "-10px" }} className='border border-0 bg-light input-group-text cursor-pointer' id='spanHide' onClick={changePassword}>{hide}</span>
+                                                    <button style={{ fontSize: "12px", marginLeft: "-10px" }} className='border border-0 bg-light input-group-text cursor-pointer' id='spanHide' onClick={changePassword}>{hide}</button>
                                                 </div>
                                                 <p style={{ fontSize: "12px", marginTop: '10px' }} className="text-danger">{formik.touched.Password ? formik.errors.Password : ""}</p>
 
