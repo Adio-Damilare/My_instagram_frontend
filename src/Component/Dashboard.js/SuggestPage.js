@@ -1,75 +1,43 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import Footer from '../Footer'
-import Isloading from '../Isloading'
 import NavBar from './NavBar'
-import UserForFollow from './UserForFollow'
+import {selectAllUsers} from "../../Component/UserSlice/UsersSlice"
+import SubFollow from './SubFollow';
+import {SelectCurrentUser} from "../Profile/UserRedux"
 
 function SuggestPage() {
-  const URL = "http://localhost:4000/user/fetchuser"
-  const [users, setusers] = useState([])
-  const [isload, setIsload] = useState(true)
-  const [mess, setmess] = useState('')
-  useEffect(() => {
-    displayUser()
-  }, [])
-
-  const displayUser = () => {
-    axios.get(URL).then((res) => {
-      if (res.status == 200) {
-        if (res.data.status) {
-          setIsload(false)
-          // setusers(res.data.user)
-
-          
-        } else {
-          setmess(res.data.message)
-        }
-      }
-    }).catch((error) => {
-      if (error) {
-        console.log(error)
-      }
-    })
-  }
+  const users =useSelector(selectAllUsers)
+  const currentUser=useSelector(SelectCurrentUser);
+  const currentUserId=currentUser._id;
   const allUser = users.map((val, index) => {
-    
     return (
-      <UserForFollow Username={val.Username} id={val._id} Fullname={val.Fullname} />
+       !currentUser.Friends.includes(val.id)&&val.id!==currentUserId&&!val.Follow.includes(currentUserId)&&<SubFollow user={val} key={index} />
     )
   })
 
   return (
     <>
-      {
-        isload ? <div id='isloadingSuges' className='container-fluid'> <Isloading /> </div> : <div>
+      
+         <div>
           <NavBar />
           <div className='container-fluid mt-3'>
-
             <div className='row  px-lg-5 px-md-3'>
 
               <div className='col-lg-6  col-md-9  col-sm-12 mx-auto  ' id='suggestpage'>
                 <p className='text-bold'>Suggestions For You</p>
-                <div className='card' style={{ padding: "0 5px 0 5px", marginTop: "-10px" }}>
+                <div className='card' style={{ padding: "0 5px 0 5px", marginTop: "-10px" ,minHeight:"60vh"}}>
                   {allUser}
-
-
-
                 </div>
               </div>
             </div>
             <div className='container mt-5 '>
               <div className='container px-3'>
                 <Footer />
-                {/* <FloatingLettersTextBuilder
-                  floatingSpeed={500}
-                  lettersAppearanceDelay={250}
-                > Floating Letters
-                </FloatingLettersTextBuilder> */}
               </div>
             </div>
           </div>
-        </div>}
+        </div>
     </>
   )
 }

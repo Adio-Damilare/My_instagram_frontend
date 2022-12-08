@@ -3,21 +3,12 @@ import React,{useState} from 'react'
 import avatar from "../Images/download1.png"
 import { Avatar } from '@mui/material' 
 import { deepOrange } from '@mui/material/colors' 
+import {useSelector} from "react-redux"
+import { SelectCurrentUser } from '../Profile/UserRedux'
 
-function DescriptSwitch() {
-  const URI="http://localhost:4000/user/findoneuser"
-  let id=JSON.parse(localStorage.deviceId)
- let data={id}
- const [current, setcurrent] = useState({})
-  axios.post(URI,data).then((res)=>{
-    if(res.data.status){
-      setcurrent(res.data.user)
-    }
-  }).then((error)=>{
-    if(error){
-      console.log(error)
-    }
-  })
+const DescriptSwitch=()=> {
+  const current=useSelector(SelectCurrentUser)
+  
   return (
     <div className=''>
         <div className='d-flex mt-3' style={{justifyContent:"space-between"}}>

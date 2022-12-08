@@ -6,6 +6,7 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 const Carousel = ({data}) => {
+  
     const settings = {
       dots: true,
       focusOnSelect: true,
@@ -47,13 +48,11 @@ const Carousel = ({data}) => {
     };
 
   return (
-    <div className='px-2'>
-      <Slider  {...settings}>
+    <div className='px-2 h-100'>
+      <Slider className='h-100' {...settings}>
       { data.map((item,index)=>(
-        <div className='card' key={index}>
-            <div className='card-top ' style={{backgroundImage:`url(${item.image})`,height:"300px",backgroundSize:"cover",}}>
-            </div>
-            <div className='card-bottom'>
+        <div className='h-100' key={index}>
+            <div className=' ' style={{backgroundImage:`url(${item.image})`,height:"100%",backgroundSize:"cover",minHeight:"400px"}}>
             </div>
         </div>
       ))

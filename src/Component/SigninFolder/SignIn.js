@@ -3,39 +3,43 @@ import istagramPhoto1 from "../Images/istagramPhoto1.png"
 import facebookLogo from "../Images/facebook2.png"
 import { useFormik } from "formik"
 import { useNavigate } from 'react-router-dom'
+import {toast ,ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup"
 import axios from 'axios'
 import SecondFooter from '../SecondFooter'
 import Footer from '../Footer'
+
 function SignIn() {
-  const [LocaKey, setLocaKey] = useState("")
-  useEffect(() => {
-      if(LocaKey){
-          localStorage.deviceId= JSON.stringify(LocaKey)
-      }
-  }, [LocaKey])
   const Navigate= useNavigate()
   const URI="http://localhost:4000/user/signin"
   const [hide, sethide] = useState("")
+  const [disable,setDisable] = useState(false)
   const [typePassword, settypePassword] = useState("password")
   const formik = useFormik({
     initialValues: {
       Email: "",
       Password: ""
     },
-    onSubmit:(values)=>{
-      console.log(values)
-      axios.post(URI,values).then((res)=>{
-        if(res.status==200){
-         setLocaKey(res.data.id)
-         Navigate("/home")
-        }
-      }).then((error)=>{
-        if(error){
-
-          console.log(error)
-        }
-      })
+    onSubmit: async (values)=>{
+      try{
+        setDisable(true)
+        console.log("hello")
+       await axios.post(URI,values).then((res)=>{
+           if(res.data.status){
+            localStorage.setItem("SigninToken",res.data.token)
+             Navigate("/user/home")
+           }else{
+            toast.error(res.data.message)
+          }
+        }).catch(err=>{
+          console.log(err.message)
+        })
+      }catch(err){
+        console.log(err.message)
+      }finally{
+        setDisable(false)
+      }
     }, 
     validationSchema:yup.object({
       Email:yup.string().required("must be filled").email(),
@@ -103,10 +107,10 @@ function SignIn() {
                   </div>
                   <span style={{ fontSize: "12px", marginLeft: "-10px" }} className='border border-0 bg-light input-group-text cursor-pointer' id='spanHide' onClick={changePassword}>{hide}</span>
                 </div>
-                <div> <button className='btn btn-primary w-100' onClick={formik.handleSubmit}>LOG IN</button></div>
+                <div> <button className='btn btn-primary w-100' type='submit' onClick={formik.handleSubmit} disabled={disable}>LOG IN </button></div>
                 <div className='text-center '>
                   <div className="divider py-2">
-                    <hr /> <span className="" id='orSpan'>OR</span>
+                    <hr /> <span className="" id='orSpan' >OR</span>
                   </div>
                 </div>
                 <button className='bg-light border w-100 rounded text-primary text-center mt-2 py-1 border-0' ><img style={{ fontSize: "18px", wordSpacing: "1px", paddingLeft: "10px" }} className='image image-responsive' src={facebookLogo} alt="istagram67" /> <code className='text-dark ps-1 ' style={{fontWeight:"300px"}}> Log in with facebook</code></button>
@@ -122,8 +126,8 @@ function SignIn() {
                 <Footer/>
               </div>
         </section>
-
       </div>
+      <ToastContainer/>
     </>
   )
 }

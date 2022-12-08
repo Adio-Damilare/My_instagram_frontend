@@ -1,53 +1,85 @@
 import React, { useState,useEffect } from 'react'
 import birthday from "../Images/birthDayPic.png"
-// import birthday from "../"
-
-
-function Birthday(props) {
-    const{formik,setdisplay}=props
-
-    const yearValues=formik.values.Birthday.Year
-    useEffect(()=>{
-        helpMeDisable()
-    },)
+import {useFormik} from "formik" 
+import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
+import { getSignUpUser } from './SignUp.Redux'; 
+import { useSelector } from 'react-redux';
+import "react-toastify/dist/ReactToastify.css";
+import { toast,ToastContainer } from 'react-toastify';
+import axios from 'axios';
+const URI = "http://localhost:4000/user/"
+ 
+const Birthday=()=>{
+    const Navigate=useNavigate()
+    const SignUpUser=useSelector(getSignUpUser)
     const [disabledBtn, setdisabledBtn] = useState(true)
-    const [disabledBtn1, setdisabledBtn1] = useState(true)
-    const helpMeDisable=()=>{
+    const [message, SetMessage]=useState("")
+    let number=Math.ceil(Math.random()*44499)
+    if( number.toString().length<5 || number.toString().length>5){
+        number =11435
+    }
 
-        if(formik.values.Birthday.Year>=2017){
+    const formik=useFormik({
+        initialValues:{
+        Year:"",
+        Month:"", 
+        Day:"",
+        },
+        onSubmit: async(values)=>{
             setdisabledBtn(true)
-        }
-        else{
-            setdisabledBtn(false)
+            try{
+                const data={...SignUpUser,ProfilePic:SignUpUser.Username,Birthday:values,Verified:{
+                    token:number,
+                    verify:false
+                }}
+               await axios.post(URI,data).then(res=>{
+                    if(res?.data?.status){
+                        localStorage.setItem("userverifedEmail", JSON.stringify(SignUpUser.Email))
+                        Navigate("/verifyemail")
+                    }else{
+                        toast.error(res.data.message)
+                    }
+                })
+
+                console.log(values)
+
+            }catch(err){
+                console.log(err.message)
+            }finally{
+                setdisabledBtn(false)
+            }
+        },
+        validationSchema:yup.object({
+            "Year":yup.number().required("Year is required"),
+            "Month":yup.string().required("Month is required"),
+            "Day":yup.string().required("Day is required")
+        })
+    })
     
-        }
-    }
-    const smart=()=>{
-        setdisabledBtn1(false)
+    const canSave=[formik.values.Day,formik.values.Month,formik.values.Year].every(Boolean)
 
-    }
-    const reverse = () => {
-        setdisplay.setdisplay(true)
-        setdisplay.setdisplay2(false)
-        setdisplay.setdisplay3(false)
 
+   const HandleSubmit=()=>{
+    if(canSave){
+        formik.handleSubmit()
+    }else{
+        toast.error("fill this field")
     }
-const change=()=>{
-    props.formik.handleSubmit()
-}
-    if (setdisplay.mode) {
-        setdisplay.setdisplay(false)
-        setdisplay.setdisplay2(false)
-        setdisplay.setdisplay3(true)
+   }
+
+
+   useEffect(()=>{
+    if(canSave){
+        setdisabledBtn(false)
     }
+   },[canSave])
+    
 return (
         <div>
-
-
             <div className='row pt'>
                 <div className='col-lg-4 col-md-7 col-sm-10 mx-auto pt-4 mt-2 ' id='spaceMuch' >
                     <div className='pt-3 card px-5'>
-
                         <div className='text-center mb-4 '> <img src={birthday} alt="istagram90" /></div>
                         <div className='text-center'>
                             <b style={{ fontSize: "17px", fontWeight: "lighter" }}>Add Your Birthday</b>
@@ -93,7 +125,7 @@ return (
                             <p style={{ fontSize: "12px", fontWeight: "lighter" }} className="text-primary btn  cursor-pointer"   data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Why do you need to provide birthday?</p>
                         </div>
                         <div className='mt-3 px-2'>
-                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 0 " }} name="Birthday.Month"  onChange={formik.handleChange} className="border  rounded ms-2 ">
+                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 0 " }} name="Month"  onChange={formik.handleChange} value={formik.values.Month} className="border  rounded ms-2 ">
                                 <option style={{ fontSize: "12px" }}>January</option>
                                 <option style={{ fontSize: "12px" }}>February</option>
                                 <option style={{ fontSize: "12px" }}>March</option>
@@ -107,7 +139,7 @@ return (
                                 <option style={{ fontSize: "12px" }}>November</option>
                                 <option style={{ fontSize: "12px" }}>December</option>
                             </select>
-                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 7px " }} name="Birthday.Day" onChange={formik.handleChange} className="border  rounded ms-3 ">
+                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 7px " }} name="Day" onChange={formik.handleChange} value={formik.values.Day} className="border  rounded ms-3 ">
                                 <option style={{ fontSize: "12px" }}>1</option>
                                 <option style={{ fontSize: "12px" }}>2</option>
                                 <option style={{ fontSize: "12px" }}>3</option>
@@ -140,7 +172,7 @@ return (
                                 <option style={{ fontSize: "12px" }}>30</option>
                                 <option style={{ fontSize: "12px" }}>31</option>
                             </select>
-                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 0 " }} name="Birthday.Year" onFocus={smart} onChange={formik.handleChange} className="border  rounded ms-3 ">
+                            <select style={{ fontSize: "12px", outline: "none", padding: "10px 0 " }} name="Year"  onChange={formik.handleChange} value={formik.values.Year} className="border  rounded ms-3 ">
                                 <option style={{ fontSize: "12px" }}>2022</option>
                                 <option style={{ fontSize: "12px" }}>2021</option>
                                 <option style={{ fontSize: "12px" }}>2019</option>
@@ -253,20 +285,19 @@ return (
                             <p style={{ fontSize: "12px" }}>Use your own birthday, even if this account is for a business, a pet, or something else</p>
                         </div>
                         <div>
-                            <button className='w-100 btn btn-primary' type='submit' onClick={change} disabled={disabledBtn1?true:disabledBtn?true:false}>Next</button>
+                            <button className='w-100 btn btn-primary' type='submit' disabled={disabledBtn} onClick={HandleSubmit}>Next</button>
                         </div>
                         <div className='mt-4 text-center'>
-                            <p className='text-primary text btn ' onClick={reverse} style={{ fontSize: "12px" }}> Go Back</p>
+                            <p className='text-primary text btn '  style={{ fontSize: "12px" }} onClick={()=>Navigate(-1)}> Go Back</p>
                         </div>
                         <div className='mt-4 text-center'>
-                            {setdisplay.result===""? " ":!setdisplay.lode?
-                            <div className='alert alert-danger' style={{fontSize:"12px"}}>{setdisplay.result}</div>:<div className='alert alert-success' style={{fontSize:"12px"}}>{setdisplay.result}</div>
-                            }
+                
                         </div>
                     </div>
                 </div>
             </div>
 
+<ToastContainer/>
         </div>
     )
 }

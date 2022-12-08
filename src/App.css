@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+.overFlowHorizontal {
+  border: 10px solid blue !important;
+}
+
+.overFlowHorizontal::-webkit-scrollbar {
+  height: 10px;
+
+
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -28,10 +38,91 @@
   color: #61dafb;
 }
 
+
+.emoji-scroll-wrapper::-webkit-scrollbar {
+  background-color: #080420;
+  width: 5px;
+}
+
+.EmojiShowerEmoji{
+  min-height: 28px;
+  width: 100%;
+}
+ .LoveSvg{
+    color: red;
+    width: 100%;
+   min-height: 25px;
+  }
+  .LoveSvg svg{
+    width: 100%;
+    min-height: 100%;
+  }
+  #PickerComponent{
+    position: fixed;
+    bottom: 0;
+    z-index: 200000000000000000000000;
+  }
+.emoji-picker-react {
+  position: fixed;
+  /* top: 55px; */
+  background-color: #080420;
+  box-shadow: 0 5px 10px #9a86f3;
+
+}
+
+.emoji-catogories button{
+  
+    filter: contrast(0);
+
+}
+.emoji-search {
+    background-color: transparent;
+    border-color: #9186f3;
+}
+  .emoji-group:before {
+    background-color: #080420;
+  }
+
+
+.emojisBoard {
+  position: absolute;
+  top: 0;
+}
+
+@media (max-width:373px) and (min-width:320px) {
+  #PickerComponent{
+    position: fixed;
+    bottom: 0;
+    left: 30px;
+    z-index: 200000000000000000000000;
+  }
+  
+}
+@media (max-width:319px) and (min-width:290px) {
+  #PickerComponent{
+    position: fixed;
+    bottom: 0;
+    left: 10px;
+    z-index: 200000000000000000000000;
+  }
+  
+}
+@media (max-width:289px) and (min-width:2px) {
+  #PickerComponent{
+    position: fixed;
+    bottom: 0;
+    left: 0px;
+    width: 100%;
+    z-index: 200000000000000000000000;
+  }
+  
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

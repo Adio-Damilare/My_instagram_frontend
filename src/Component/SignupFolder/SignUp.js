@@ -6,58 +6,33 @@ import { useFormik } from 'formik'
 import * as yup from "yup"
 import axios from 'axios'
 import SecondFooter from '../SecondFooter'
-import Birthday from './Birthday'
-import ConfirmOfPassword from './ConfirmOfPassword'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { FirstPage } from './SignUp.Redux';
+import { useDispatch } from 'react-redux'
 
 const SignUp = () => {
-    const [LocaKey, setLocaKey] = useState("")
-    useEffect(() => {
-        if(LocaKey){
-            localStorage.deviceId= JSON.stringify(LocaKey)
-        }
-    }, [LocaKey])
-    
+    const dispatch=useDispatch();
+    const Navigate=useNavigate()
     const [result, setresult] = useState("")
     const [mode, setMode] = useState(false)
     const [lode, setlode] = useState("")
     const FullnameRegex = /([\w])/
-    const [hide, sethide] = useState("")
-    const [display, setdisplay] = useState(true)
-    const [display2, setdisplay2] = useState(false)
-    const [display3, setdisplay3] = useState(false)
+    const [hide, sethide] = useState("show")
     const [typePassword, settypePassword] = useState("password")
-    const URI = "http://localhost:4000/user/"
     const formik = useFormik({
         initialValues: {
             Fullname: "",
             Username: "",
             Email: "",
             Password: "",
-            ProfilePic:"newUser",
-            Birthday:{Year:"",Month:"January",Day:"1"},
         },
-        onSubmit: (values) => {
-        
-            axios.post(URI, values).then((res) => {
-                    if(res.status==200){
-                        setresult(res.data.message)
-                     console.log(res.data)
-                     setLocaKey(res.data.id)
-                        setMode(res.data.status)
-                        setlode(res.data.status)
-
-                    }
-                return
-            }).then((error) => {
-                if (error) {
-
-                    setMode("error")
-                    setresult("error")
-                }
-            })
-
-
+        onSubmit:  async(values) => { 
+            try{
+               dispatch(FirstPage(values))
+               Navigate("/birthday")
+            }catch(err){
+                console.log(err.message)
+            }
         },
         validationSchema: yup.object({
             Fullname: yup.string().required("Fullname is required").min(3, "Your Fulname must be atleast three character").matches(FullnameRegex, "Fullname can be only word"),
@@ -68,7 +43,6 @@ const SignUp = () => {
     })
     const passwordLength = () => {
         sethide("Show")
-
     }
     const changePassword = () => {
         if (formik.values.Password === "") {
@@ -84,38 +58,16 @@ const SignUp = () => {
             sethide("Show")
         }
     }
-
-    const changeInterface=()=>{
-        if(formik.errors.Fullname || formik.errors.Email || formik.errors.Username || formik.errors.Password ){
-
-        }
-        else if(formik.values.Fullname==="" || formik.values.Email==="" ||formik.values.Username===""|| formik.values.Password==="" ){
-        }
-        else{
-
-            
-            setdisplay(false)
-            setdisplay2(true)
-            setdisplay3(false)
-            
-        }
-    }
 const para="Have an account?"
 
 const hrefTag="Log in"
 const link= "/signin"
-
-    
-    // console.log(formik.)
-    // console.log(formik.touched)
-    // console.log(formik.errors.Email)
-
     return (
         <>
             <div className='container mb-5'  >
                 <div className='container '  >
                    
-                        <div className='row-lg pt-5' id='spaceMuch' style={display?{display:"block"}:{display:"none"} }>
+                        <div className='row-lg pt-5' id='spaceMuch' >
                             <div className='col-lg-4 col-md-7 col-sm-10 mx-auto' id='spaceMuch' >
                                 <div className='px-5  border border-1'>
                                     <div className='py-4 '>
@@ -204,7 +156,7 @@ const link= "/signin"
                                             </p>
                                             <div>
 
-                                                <button className='btn btn-primary w-100' disabled={formik.errors ?false:true}  onClick={changeInterface}> SIGN UP</button>
+                                                <button className='btn btn-primary w-100' disabled={formik.errors ?false:true}  onClick={formik.handleSubmit}> SIGN UP</button>
                                             </div>
 
                                         </div>
@@ -212,12 +164,12 @@ const link= "/signin"
                                 </div>
                             </div>
                         </div>
-                        <div style={display2? {display2:"block"} :{display:"none"}}>
+                        {/* <div style={display2? {display2:"block"} :{display:"none"}}>
                             <Birthday formik={formik} setdisplay={{setdisplay,setdisplay2,setdisplay3,result,mode,setMode}}/>
                         </div>
                         <div style={display3? {display3:"block"} :{display:"none"}}>
                             <ConfirmOfPassword formik={formik} setdisplay={{setdisplay,setdisplay2,setdisplay3,setMode,lode}}/>
-                        </div>
+                        </div> */}
                  
                     <div>
 

@@ -9,19 +9,25 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
 import "../node_modules/bootstrap/dist/js/bootstrap.js"
 import "../node_modules/bootstrap/js/dist/modal.js"
 import "../node_modules/bootstrap/js/src/dropdown.js"
-// import "../node_modules/bootstrap/js/src/"
 import "../node_modules/bootstrap/js/src/util/scrollbar"
 import "../node_modules/bootstrap/dist/js/bootstrap.esm"
-// import "../node_modules/bootstrap/dist/js/"
-import {BrowserRouter} from "react-router-dom"
-
+import {BrowserRouter,Routes,Route} from "react-router-dom"
+import { Provider } from 'react-redux';
+import { UserSlice } from './Component/UserSlice/UsersSlice';
+import { store } from './store';
+import {extendedPostslice} from "./PostSlice/index"
+store.dispatch(extendedPostslice.endpoints.getPost.initiate())
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <Provider store={store}>
   <React.StrictMode>
     <BrowserRouter>
-    <App />
+    <Routes >
+      <Route path="/*" element={<App/>}/>
+    </Routes>
     </BrowserRouter>
   </React.StrictMode>
+  </Provider>
 
 );
 

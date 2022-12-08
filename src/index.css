@@ -97,13 +97,22 @@ cursor: default;
   top: 60px;
   height:400px
 }
-#workDestroyer{
-  display: none;
-}
+/* #workDestroyer{
+  position: absolute;
+  width: 100%;
+  top: 179px;
+  z-index: 300;
+  height: 20px;
+  border: none;
+  border-bottom: 1px solid whiteSmoke;
+} */
 #stubornImage{
 height:150px;
 width:150px;
+}
 
+.calculate{
+  padding:20px 0px !important ;
 }
 #form-file-upload {
   height: 16rem;
@@ -147,6 +156,11 @@ width:150px;
   text-decoration-line: underline;
 }
 
+.children {
+-webkit-box-shadow: 2px 4px 10px 1px rgba(0,0,0,0.47);
+box-shadow:2px 4px 10px 1px rgba(201,201,201,0.47) ;
+
+}
 
 #drag-file-element {
   position: absolute;
@@ -159,6 +173,11 @@ width:150px;
   left: 0px;
 }
 
+.spinning{
+  /* border: 0px solid blue; */
+  color: blue;
+
+}
 @media (max-width:384) and (min-width:px) {
   #spaceMuch{
     border: 1px solid;
