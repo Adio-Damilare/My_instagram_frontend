@@ -12,7 +12,7 @@ import Footer from '../Footer'
 
 function SignIn() {
   const Navigate= useNavigate()
-  const URI="http://localhost:4000/user/signin"
+  const URI="https://instagram-server-side-gau760amz-adio-damilare.vercel.app/user/signin"
   const [hide, sethide] = useState("")
   const [disable,setDisable] = useState(false)
   const [typePassword, settypePassword] = useState("password")

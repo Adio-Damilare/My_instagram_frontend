@@ -13,7 +13,7 @@ const ProtectLayout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const socket = useRef()
-    const Url = "http://localhost:4000/user/token";
+    const Url = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/user/token";
     const token = localStorage.getItem("SigninToken")
     const [result, setResult] = useState(false);
     const [resultUser, setResultUser] = useState(false);
@@ -30,7 +30,7 @@ const ProtectLayout = () => {
                 if (res?.data?.status) {
                     let user = (res.data.user)
                     delete user.Password;
-                    const host = "http://localhost:4000";
+                    const host = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/";
                     socket.current = io(host);
                     socket.current.emit("add-user", user._id);
                     dispatch(Setsocket(socket.current));

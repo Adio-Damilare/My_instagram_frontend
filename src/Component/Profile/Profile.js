@@ -56,7 +56,7 @@ const Post=({id})=>{
 const Profile = () => {
     const userInfo=useSelector(SelectCurrentUser);
     const dispatch=useDispatch()
-    const URI = "http://localhost:4000/user/uploadimage"
+    const URI = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/user/uploadimage"
     const deviceId = userInfo._id
     const [file, setfile] = useState("")
     const [profile, setProfile] = useState("")

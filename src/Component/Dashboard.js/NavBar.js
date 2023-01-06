@@ -44,7 +44,7 @@ const NavBar = ({roar}) => {
     const inputRef = useRef()
     const current=useSelector(SelectCurrentUser)
    const Users=useSelector(selectAllUsers)
-    const URI3 = "http://localhost:4000/user/uploadpost"
+    const URI3 = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/user/uploadpost"
     const navigate = useNavigate()
     const [SearchW, setSearchW] = useState("")
     const [currentUser, ] = useState({...current})

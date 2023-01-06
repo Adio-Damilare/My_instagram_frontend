@@ -17,7 +17,7 @@ const SubFollow = ({ user }) => {
     const currentUser =useSelector(SelectCurrentUser);
     const [foll, setFoll]=React.useState(true);
     const dispatch=useDispatch();
-    const url = "http://localhost:4000/user/follow";
+    const url = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/user/follow";
     const follow = () => {
         setFoll(false)
         axios.post(url,{currentUserId:currentUser._id,userToFollow:user._id}).then(res=>{

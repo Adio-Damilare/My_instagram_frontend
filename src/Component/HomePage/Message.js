@@ -196,7 +196,7 @@ const Message = () => {
     const friendId = useSelector(SelectCurrentFriend);
     const  fromUsername =useSelector(state=>selectUserById(state,friendId))
 
-    const host = "http://localhost:4000/message/addmessage";
+    const host = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/message/addmessage";
 
     useEffect(() => {
         if (socket) {

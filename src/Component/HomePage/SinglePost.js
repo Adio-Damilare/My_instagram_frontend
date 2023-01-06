@@ -56,7 +56,7 @@ const SinglePost = ({ post }) => {
     const [peoples, setPeoples] = useState([...Likes.people])
     const [number, setNumber] = useState(Likes.NumberOfLike)
     const Inputref = useRef()
-    const host = "http://localhost:4000/user/";
+    const host = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/user/";
 
 
     const tell = () => {

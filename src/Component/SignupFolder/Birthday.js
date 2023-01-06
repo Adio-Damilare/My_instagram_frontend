@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import "react-toastify/dist/ReactToastify.css";
 import { toast,ToastContainer } from 'react-toastify';
 import axios from 'axios';
-const URI = "http://localhost:4000/user/"
+const URI = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/user/"
  
 const Birthday=()=>{
     const Navigate=useNavigate()
