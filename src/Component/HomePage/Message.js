@@ -24,7 +24,7 @@ const toastifyOptions = {
 const SingleMesageUser = ({ id }) => {
     const dispatch = useDispatch()
     const currentUser = useSelector(SelectCurrentUser)
-    const host = "http://localhost:4000/message";
+    const host = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/message";
     const user = useSelector(state => selectUserById(state, id))
     const Getallmessages = () => {
         dispatch(AddFriend(id))
