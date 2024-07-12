@@ -33,6 +33,7 @@ const Birthday=()=>{
                     token:number,
                     verify:false
                 }}
+                console.log(data)
                await axios.post(URI,data).then(res=>{
                     if(res?.data?.status){
                         localStorage.setItem("userverifedEmail", JSON.stringify(SignUpUser.Email))
