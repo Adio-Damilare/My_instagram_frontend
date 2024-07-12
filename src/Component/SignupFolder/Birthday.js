@@ -13,7 +13,7 @@ const URI = "https://instagram-server-side-gau760amz-adio-damilare.vercel.app/us
 const Birthday=()=>{
     const Navigate=useNavigate()
     const SignUpUser=useSelector(getSignUpUser)
-    const [disabledBtn, setdisabledBtn] = useState(true)
+    const [disabledBtn, setdisabledBtn] = useState(false)
     const [message, SetMessage]=useState("")
     let number=Math.ceil(Math.random()*44499)
     if( number.toString().length<5 || number.toString().length>5){
