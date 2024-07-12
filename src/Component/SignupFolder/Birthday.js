@@ -37,8 +37,8 @@ const Birthday=()=>{
                const res=  await axios.post(URI,data)
                console.log(res)
                 if(res?.data?.status){
-                localStorage.setItem("userverifedEmail", JSON.stringify(SignUpUser.Email))
-                Navigate("/verifyemail")
+                    localStorage.setItem("SigninToken",res.data.token)
+                    Navigate("/user/home")
                 }else{
                 toast.error(res.data.message)
                 }
