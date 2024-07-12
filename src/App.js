@@ -40,6 +40,7 @@ const  App=()=>{
         <Route path="sse2" element={<DescriptSwitch />} />
         <Route path="sse3" element={<FriendStatus />} />
         <Route path='suggestuser' element={<SuggestPage/>}/>
+        <Route path='*' element={<Navigate to="/"/>}/>
         </Route>
         </Route>
       </Routes>
