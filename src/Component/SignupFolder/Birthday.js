@@ -34,14 +34,14 @@ const Birthday=()=>{
                     verify:false
                 }}
                 console.log(data)
-               await axios.post(URI,data).then(res=>{
-                    if(res?.data?.status){
-                        localStorage.setItem("userverifedEmail", JSON.stringify(SignUpUser.Email))
-                        Navigate("/verifyemail")
-                    }else{
-                        toast.error(res.data.message)
-                    }
-                })
+               const res=  await axios.post(URI,data)
+               console.log(res)
+                if(res?.data?.status){
+                localStorage.setItem("userverifedEmail", JSON.stringify(SignUpUser.Email))
+                Navigate("/verifyemail")
+                }else{
+                toast.error(res.data.message)
+                }
 
                 console.log(values)
 
