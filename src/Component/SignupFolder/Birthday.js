@@ -59,8 +59,6 @@ const Birthday=()=>{
     })
     
     const canSave=[formik.values.Day,formik.values.Month,formik.values.Year].every(Boolean)
-
-
    const HandleSubmit=()=>{
     if(canSave){
         formik.handleSubmit()
@@ -70,11 +68,7 @@ const Birthday=()=>{
    }
 
 
-   useEffect(()=>{
-    if(canSave){
-        setdisabledBtn(false)
-    }
-   },[canSave])
+   
     
 return (
         <div>

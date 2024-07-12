@@ -25,16 +25,14 @@ function SignIn() {
       try{
         setDisable(true)
         console.log("hello")
-       await axios.post(URI,values).then((res)=>{
+        const res= await axios.post(URI,values)
            if(res.data.status){
             localStorage.setItem("SigninToken",res.data.token)
              Navigate("/user/home")
            }else{
             toast.error(res.data.message)
           }
-        }).catch(err=>{
-          console.log(err.message)
-        })
+      
       }catch(err){
         console.log(err.message)
       }finally{
